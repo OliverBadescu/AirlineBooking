@@ -1,0 +1,5 @@
+1,1,John Smith,1234567890,john@example.com,john_smith,password123,123 Main Street Anytown USA
+2,2,Maria Garcia,38543210,maria@example.com,maria_garcia,securepass,456 Oak Avenue Othertown USA
+3,3,Ahmed Khan,555888999,ahmed@example.com,ahmed_khan,mysecret,789 Elm Street,Anothercity USA
+4,4,Sophie Johnson,444777222,sophie@example.com,sophie_j,sophiepass,101 Pine Road Somewhereville USA
+5,5,Luca Rossi,666333111,luca@example.com,luca_r,luca123,321 Maple Lane,Anytown USA

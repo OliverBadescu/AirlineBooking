@@ -1,0 +1,5 @@
+1,1,Economy,2024-04-10,Rezervare pentru zborul NY-LA pentru pasagerul John Smith.
+2,2,Business,2024-05-15,Rezervare pentru zborul London-Paris pentru pasagerul Maria Garcia.
+3,3,First Class,2024-07-20,Rezervare pentru zborul Tokyo-Sydney pentru pasagerul Ahmed Khan.
+4,4,Premium Economy,2024-06-05,Rezervare pentru zborul San Francisco-Tokyo pentru pasagerul Sophie Johnson.
+5,5,Economy,2024-08-30,Rezervare pentru zborul Berlin-Rome pentru pasagerul Luca Rossi.

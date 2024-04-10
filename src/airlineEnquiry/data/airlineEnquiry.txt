@@ -1,0 +1,5 @@
+1,problema cu plata online,Plangere,2024-04-10,Nu pot finaliza plata online pentru rezervare.
+2,Schimbare de dată,Solicitare,2024-05-15,Doresc sa modific data rezervarii de la data Y la data Z.
+3,Intrebare despre politica de anulare,Intrebare,2024-07-20,Doresc sa aflu care este politica de anulare pentru rezervarile efectuate.
+4,Asistența necesară la aeroport,Ajutor,2024-06-05,Avem nevoie de asistenta la aeroport pentru a face check-in-ul pentru rezervarea noastra.
+5,Informatii despre facilitățile la bord,Intrebare,2024-08-30,Dorim sa aflam ce facilitati sunt disponibile la bordul aeronavei pentru rezervarea noastra.
