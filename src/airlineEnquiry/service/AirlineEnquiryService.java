@@ -1,5 +1,6 @@
 package airlineEnquiry.service;
 
+import airlineBooking.model.AirlineBooking;
 import airlineEnquiry.model.AirlineEnquiry;
 import bookingEnquiry.model.BookingEnquiry;
 
@@ -34,6 +35,31 @@ public class AirlineEnquiryService {
             e.printStackTrace();
         }
 
+    }
+
+    public int generateId(){
+
+        int id=(int) Math.round(Math.random()*1000+1);
+
+        while (findAirlineEnquiryById(id)!=null){
+            id=(int) Math.round(Math.random()*1000+1);
+        }
+
+        return id;
+
+    }
+
+    public AirlineEnquiry findAirlineEnquiryById(int id){
+        for (int i =0; i < airlineEnquiryList.size();i++){
+            if(airlineEnquiryList.get(i).getAirlineEnquiryId() == id){
+                return airlineEnquiryList.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void addAirlineEnquiry(AirlineEnquiry airlineEnquiry){
+        this.airlineEnquiryList.add(airlineEnquiry);
     }
 
 }

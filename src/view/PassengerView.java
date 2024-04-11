@@ -3,12 +3,17 @@ package view;
 
 import airlineBooking.model.AirlineBooking;
 import airlineBooking.service.AirlineBookingService;
+import airlineEnquiry.model.AirlineEnquiry;
 import airlineEnquiry.service.AirlineEnquiryService;
+import bookingEnquiry.model.BookingEnquiry;
 import bookingEnquiry.service.BookingEnquiryService;
 import flights.model.Flight;
 import flights.service.FlightService;
 import passengers.model.Passanger;
 import passengers.service.PassangerService;
+import tickets.model.Ticket;
+import tickets.service.TicketService;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,6 +24,7 @@ public class PassengerView {
     private BookingEnquiryService bookingEnquiryService;
     private AirlineEnquiryService airlineEnquiryService;
     private AirlineBookingService airlineBookingService;
+    private TicketService ticketService;
     private Passanger passenger;
     private Scanner scanner;
 
@@ -29,6 +35,7 @@ public class PassengerView {
         this.bookingEnquiryService = new BookingEnquiryService();
         this.airlineEnquiryService = new AirlineEnquiryService();
         this.airlineBookingService = new AirlineBookingService();
+        this.ticketService = new TicketService();
         this.passenger = passenger;
         this.scanner = new Scanner(System.in);
 
@@ -45,13 +52,13 @@ public class PassengerView {
         System.out.println("Apasati tasta 4 pentru a cumpara un bilet");
         System.out.println("Apasati tasta 5 pentru a afisa rezervarea dvs.");
         System.out.println("Apasati tasta 6 pentru a afisa biletele dvs.");
-        System.out.println("Apasati tasta 7 pentru a face un enquiry la o revervare");
+        System.out.println("Apasati tasta 7 pentru a face un enquiry la o rezervare");
         System.out.println("Apasati tasta 8 pentru a face un enquiry la un zbor");
         System.out.println("Apasati tasta 9 pentru a cauta un zbor");
 
         System.out.println("\n");
 
-        System.out.println("Apasati tasta 11 pentru a va deloga");
+        System.out.println("Apasati tasta 10 pentru a va deloga");
 
 
     }
@@ -75,11 +82,25 @@ public class PassengerView {
                 case 3:
                     deleteBooking();
                     break;
+                case 4:
+                    cumparaBilet();
+                    break;
                 case 5:
                     afisareRezervare();
                     break;
-
-                case 11:
+                case 6:
+                    afisareBilete();
+                    break;
+                case 7:
+                    addBookingEnquiry();
+                    break;
+                case 8:
+                    addFlightEnquiry();
+                    break;
+                case 9:
+                    cautareZbor();
+                    break;
+                case 10:
                     running = false;
                     break;
                 default:
@@ -147,8 +168,82 @@ public class PassengerView {
 
     }
 
+    private void cumparaBilet(){
 
+        System.out.println("Introduceti ruta zborului pentru care doriti sa cumparati biletul(Ruta-Ruta): ");
+        String route = scanner.nextLine();
 
+        Flight flight = flightService.findByRoute(route);
+        if(flight != null) {
+            System.out.println("Ce tip de zbor doriti? (ex. Buisness, First Class, Economy)");
+            String type = scanner.nextLine();
+            String descriere = "Bilet pentru zborul: " + '\n' + flight.descriere();
+            Ticket ticket = new Ticket(ticketService.generateId(), this.passenger.getPassengerId(), type, flight.getFlightDate(), descriere);
+            ticketService.addTicket(ticket);
+            System.out.println("Ati cumparat biletul!");
+        }else{
+            System.out.println("Acest zbor nu exista");
+        }
+
+    }
+
+    private void afisareBilete(){
+
+        ArrayList<Ticket> tickets = ticketService.getPassengerTicketList(this.passenger.getPassengerId());
+
+        if(tickets!=null) {
+            for (int i = 0; i < tickets.size(); i++) {
+                System.out.println(tickets.get(i).desciere() + "\n");
+            }
+        }
+        else{
+            System.out.println("Nu aveti bilete");
+        }
+
+    }
+
+    private void cautareZbor(){
+
+        System.out.println("Introduceti ruta zborului care il cautati(Ruta-Ruta): ");
+        String route = scanner.nextLine();
+
+        Flight flight = flightService.findByRoute(route);
+
+        if(flight != null) {
+            System.out.println(flight.descriere());
+        }else{
+            System.out.println("Zborul nu exista");
+        }
+
+    }
+
+    private void addBookingEnquiry(){
+
+        System.out.println("Introduceti titlul enquiry-ului: ");
+        String titlul = scanner.nextLine();
+        System.out.println("Introduceti tipul: ");
+        String tipul = scanner.nextLine();
+        String date = "2024-11-6";
+        System.out.println("Descrieti problema dvs.");
+        String text = scanner.nextLine();
+
+        BookingEnquiry bookingEnquiry = new BookingEnquiry(bookingEnquiryService.generateId(), titlul, tipul, date, text);
+        bookingEnquiryService.addBookingEnquiry(bookingEnquiry);
+
+    }
+
+    private void addFlightEnquiry(){
+        System.out.println("Introduceti titlul enquiry-ului: ");
+        String titlul = scanner.nextLine();
+        System.out.println("Introduceti tipul: ");
+        String tipul = scanner.nextLine();
+        String date = "2024-11-6";
+        System.out.println("Descrieti problema dvs.");
+        String text = scanner.nextLine();
+
+        AirlineEnquiry airlineEnquiry = new AirlineEnquiry(airlineEnquiryService.generateId(), titlul, tipul, date, text);
+        airlineEnquiryService.addAirlineEnquiry(airlineEnquiry);
+    }
 
 }
 

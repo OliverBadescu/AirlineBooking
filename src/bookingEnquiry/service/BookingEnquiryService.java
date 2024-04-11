@@ -1,5 +1,6 @@
 package bookingEnquiry.service;
 
+import airlineEnquiry.model.AirlineEnquiry;
 import bookingEnquiry.model.BookingEnquiry;
 
 import java.io.File;
@@ -33,6 +34,31 @@ public class BookingEnquiryService {
             e.printStackTrace();
         }
 
+    }
+
+    public int generateId(){
+
+        int id=(int) Math.round(Math.random()*1000+1);
+
+        while (findBookingEnquiryById(id)!=null){
+            id=(int) Math.round(Math.random()*1000+1);
+        }
+
+        return id;
+
+    }
+
+    public BookingEnquiry findBookingEnquiryById(int id){
+        for (int i =0; i < bookingEnquiryList.size();i++){
+            if(bookingEnquiryList.get(i).getEnquiryId() == id){
+                return bookingEnquiryList.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void addBookingEnquiry(BookingEnquiry bookingEnquiry) {
+        this.bookingEnquiryList.add(bookingEnquiry);
     }
 
 }

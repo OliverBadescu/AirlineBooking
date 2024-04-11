@@ -3,4 +3,3 @@
 3,3,First Class,2024-07-20,Round-trip flight from Tokyo to Sydney
 4,4,Premium Economy,2024-06-05,Round-trip flight from San Francisco to Tokyo
 5,5,Economy,2024-08-30,One-way flight from Berlin to Rome
-
