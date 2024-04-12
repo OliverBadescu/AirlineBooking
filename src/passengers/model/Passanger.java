@@ -11,10 +11,9 @@ public class Passanger {
     private String passengerPassword;
     private String passengerAddress;
 
-    public Passanger(int passengerId, int ticketId, String passengerName, int passengerMobile, String passengerEmail, String passengerUsername, String passengerPassword, String passengerAddress){
+    public Passanger(int passengerId, String passengerName, int passengerMobile, String passengerEmail, String passengerUsername, String passengerPassword, String passengerAddress){
 
         this.passengerId = passengerId;
-        this.ticketId = ticketId;
         this.passengerName = passengerName;
         this.passengerMobile = passengerMobile;
         this.passengerEmail = passengerEmail;

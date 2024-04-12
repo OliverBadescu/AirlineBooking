@@ -1,5 +1,6 @@
 package passengers.service;
 
+import bookingEnquiry.model.BookingEnquiry;
 import passengers.model.Passanger;
 
 import java.io.File;
@@ -35,6 +36,46 @@ public class PassangerService {
             e.printStackTrace();
         }
 
+    }
+
+    public Passanger login(String username, String password) {
+        for(int i = 0; i<this.passangers.size(); i++){
+            if(passangers.get(i).getPassengerUsername().equals(username) && passangers.get(i).getPassengerPassword().equals(password)){
+                return this.passangers.get(i);
+            }
+        }
+        return null;
+    }
+
+    public boolean inregistrare(Passanger passanger) {
+        for(int i = 0; i<this.passangers.size(); i++){
+            if(this.passangers.get(i).getPassengerUsername().equals(passanger.getPassengerUsername())){
+                return false;
+            }
+        }
+        this.passangers.add(passanger);
+        return true;
+    }
+
+    public int generateId(){
+
+        int id=(int) Math.round(Math.random()*1000+1);
+
+        while (findPassengerById(id)!=null){
+            id=(int) Math.round(Math.random()*1000+1);
+        }
+
+        return id;
+
+    }
+
+    public Passanger findPassengerById(int id){
+        for (int i =0; i < passangers.size();i++){
+            if(passangers.get(i).getPassengerId() == id){
+                return passangers.get(i);
+            }
+        }
+        return null;
     }
 
 }
