@@ -38,6 +38,12 @@ public class PassangerService {
 
     }
 
+    public void afisare(){
+        for (int i = 0; i < this.passangers.size(); i++){
+            System.out.println(passangers.get(i).descriere());
+        }
+    }
+
     public Passanger login(String username, String password) {
         for(int i = 0; i<this.passangers.size(); i++){
             if(passangers.get(i).getPassengerUsername().equals(username) && passangers.get(i).getPassengerPassword().equals(password)){
@@ -76,6 +82,16 @@ public class PassangerService {
             }
         }
         return null;
+    }
+
+    public boolean stergerePassager(Passanger passanger) {
+        for(int i = 0; i<this.passangers.size(); i++){
+            if(this.passangers.get(i).getPassengerId() == passanger.getPassengerId()){
+                this.passangers.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
 }

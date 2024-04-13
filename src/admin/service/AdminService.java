@@ -1,6 +1,7 @@
 package admin.service;
 
 import admin.model.Admin;
+import passengers.model.Passanger;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -34,6 +35,15 @@ public class AdminService {
             e.printStackTrace();
         }
 
+    }
+
+    public Admin login(String username, String password) {
+        for(int i = 0; i<this.admins.size(); i++){
+            if(admins.get(i).getUsername().equals(username) && admins.get(i).getPassword().equals(password)){
+                return this.admins.get(i);
+            }
+        }
+        return null;
     }
 
 }

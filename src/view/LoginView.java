@@ -1,4 +1,6 @@
 package view;
+import admin.model.Admin;
+import admin.service.AdminService;
 import passengers.model.Passanger;
 import passengers.service.PassangerService;
 
@@ -7,10 +9,12 @@ import java.util.Scanner;
 public class LoginView {
 
     private PassangerService passangerService;
+    private AdminService adminService;
     private Scanner scanner;
 
     public LoginView(){
         this.passangerService = new PassangerService();
+        this.adminService = new AdminService();
         this.scanner = new Scanner(System.in);
 
         this.play();
@@ -110,6 +114,13 @@ public class LoginView {
         System.out.println("Parola: ");
         String parola = scanner.nextLine();
 
+        Admin admin = adminService.login(username, parola);
+
+        if(admin != null){
+            AdminView adminView = new AdminView();
+        }else{
+            System.out.println("Date incorecte");
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package flights.service;
 
 import flights.model.Flight;
+import passengers.model.Passanger;
 import tickets.model.Ticket;
 
 import java.io.File;
@@ -38,6 +39,27 @@ public class FlightService {
 
     }
 
+    public int generateId(){
+
+        int id=(int) Math.round(Math.random()*1000+1);
+
+        while (findFlightById(id)!=null){
+            id=(int) Math.round(Math.random()*1000+1);
+        }
+
+        return id;
+
+    }
+
+    public Flight findFlightById(int id){
+        for (int i =0; i < flights.size();i++){
+            if(flights.get(i).getFlightId() == id){
+                return flights.get(i);
+            }
+        }
+        return null;
+    }
+
     public void afisareFlights(){
 
         for (int i =0; i < this.flights.size(); i++){
@@ -56,4 +78,50 @@ public class FlightService {
         return null;
     }
 
+    public boolean addFlight(Flight flight){
+        for (int i =0; i < this.flights.size(); i++){
+            if(this.flights.get(i).getFlightRoute().equals(flight.getFlightRoute()) && this.flights.get(i).getFlightDate().equals(flight.getFlightDate())){
+                return false;
+            }
+        }
+        this.flights.add(flight);
+        return true;
+    }
+
+    public boolean stergereZbor(Flight flight){
+        for (int i =0; i < this.flights.size(); i++){
+            if(this.flights.get(i).getFlightId() == flight.getFlightId()){
+                this.flights.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Flight celMaiCumparatZbor(){
+
+        int imax =0;
+
+        for (int i =0; i < this.flights.size()-1; i++){
+
+            if(this.flights.get(i).getFlightTickets() > this.flights.get(i+1).getFlightTickets()){
+                imax=i;
+            }
+        }
+        return this.flights.get(imax);
+    }
+
+    public ArrayList<Flight> getFlights() {
+        return flights;
+    }
+
+    public int nrTickets(Flight flight){
+        int ct =0;
+        for (int i =0; i < this.flights.size(); i++){
+            if(this.flights.get(i).getFlightTickets() == flight.getFlightTickets()){
+                ct++;
+            }
+        }
+        return ct;
+    }
 }

@@ -61,4 +61,12 @@ public class BookingEnquiryService {
         this.bookingEnquiryList.add(bookingEnquiry);
     }
 
+    public void afisare(){
+
+        for(int i = 0;i < bookingEnquiryList.size();i++){
+            System.out.println(bookingEnquiryList.get(i).descriere() + "\n");
+        }
+
+    }
+
 }

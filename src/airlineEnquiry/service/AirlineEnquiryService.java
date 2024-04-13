@@ -62,4 +62,10 @@ public class AirlineEnquiryService {
         this.airlineEnquiryList.add(airlineEnquiry);
     }
 
+    public void afisare(){
+        for(int i =0; i < airlineEnquiryList.size();i++){
+            System.out.println(airlineEnquiryList.get(i).descriere() + "\n");
+        }
+    }
+
 }
